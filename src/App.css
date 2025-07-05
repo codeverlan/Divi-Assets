@@ -11,6 +11,29 @@
   color: #374151;
 }
 
+/* Layout fixes for centering */
+.main-content {
+  width: 100%;
+  max-width: none;
+}
+
+/* Ensure proper sidebar spacing */
+.sidebar-fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16rem; /* 64 * 4px = 256px */
+  height: 100vh;
+  z-index: 50;
+}
+
+@media (min-width: 1024px) {
+  .main-with-sidebar {
+    margin-left: 16rem; /* 64 * 4px = 256px */
+    width: calc(100% - 16rem);
+  }
+}
+
 /* Custom scrollbar styles */
 .scrollbar-thin {
   scrollbar-width: thin;

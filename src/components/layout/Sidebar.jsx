@@ -40,7 +40,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         animate={isOpen ? "open" : "closed"}
         variants={sidebarVariants}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed left-0 top-0 z-50 w-64 h-full bg-white dark:bg-gray-800 shadow-xl border-r border-gray-200 dark:border-gray-700 lg:translate-x-0 lg:static lg:z-auto"
+        className="fixed left-0 top-0 z-50 w-64 h-full bg-white dark:bg-gray-800 shadow-xl border-r border-gray-200 dark:border-gray-700 lg:translate-x-0 lg:static lg:z-auto lg:w-64"
       >
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 lg:hidden">
           <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>

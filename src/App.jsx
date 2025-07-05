@@ -49,12 +49,12 @@ function App() {
               onClose={() => setSidebarOpen(false)}
             />
             
-            <main className="flex-1 lg:ml-64 pt-16">
+            <main className="flex-1 lg:ml-64 pt-16 w-full">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="p-4 sm:p-6"
+                className="p-4 sm:p-6 w-full max-w-none"
               >
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
