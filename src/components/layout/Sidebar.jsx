@@ -59,13 +59,13 @@ const Sidebar = ({ isOpen, onClose }) => {
                 <NavLink
                   to={item.path}
                   onClick={onClose}
-                  className={({ isActive }) =>
-                    `flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-divi-primary text-white'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`
-                  }
+                  className={({ isActive }) => `
+                    flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors
+                    ${isActive
+                      ? 'bg-divi-primary text-white'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }
+                  `}
                 >
                   <SafeIcon icon={item.icon} className="w-5 h-5" />
                   <span className="font-medium">{item.label}</span>

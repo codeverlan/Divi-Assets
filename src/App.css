@@ -35,13 +35,6 @@
   background: #4f46e5;
 }
 
-/* Asset grid animations */
-.asset-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
 /* Upload zone styles */
 .upload-zone {
   border: 2px dashed #d1d5db;
@@ -101,4 +94,29 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Responsive grid improvements */
+@media (max-width: 640px) {
+  .asset-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .asset-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .asset-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .asset-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

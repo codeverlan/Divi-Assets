@@ -37,14 +37,14 @@ function App() {
     <AssetProvider>
       <Router>
         <div className={`min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
-          <Header 
+          <Header
             onMenuClick={() => setSidebarOpen(!sidebarOpen)}
             darkMode={darkMode}
             onDarkModeToggle={toggleDarkMode}
           />
           
           <div className="flex">
-            <Sidebar 
+            <Sidebar
               isOpen={sidebarOpen}
               onClose={() => setSidebarOpen(false)}
             />
@@ -54,7 +54,7 @@ function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="p-6"
+                className="p-4 sm:p-6"
               >
                 <Routes>
                   <Route path="/" element={<Dashboard />} />

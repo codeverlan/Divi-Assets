@@ -64,7 +64,6 @@ const AssetLibrary = () => {
     if (asset.copyableContent && asset.copyableContent.diviImport) {
       try {
         await navigator.clipboard.writeText(JSON.stringify(asset.copyableContent.diviImport));
-        // You could add a toast notification here
         console.log('Asset copied to clipboard');
       } catch (err) {
         console.error('Failed to copy:', err);
@@ -99,10 +98,10 @@ const AssetLibrary = () => {
       className="space-y-6"
     >
       {/* Header */}
-      <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-center justify-between">
+      <motion.div variants={itemVariants} className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Asset Library</h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Asset Library</h1>
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             {filteredAssets.length} assets available
             {categories.length > 0 && (
               <span className="ml-2">• {categories.length} categories</span>
@@ -110,7 +109,7 @@ const AssetLibrary = () => {
           </p>
         </div>
         
-        <div className="flex items-center space-x-4 mt-4 md:mt-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
@@ -123,32 +122,34 @@ const AssetLibrary = () => {
             <option value="category">Category</option>
           </select>
           
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          >
-            <SafeIcon icon={FiFilter} className="w-4 h-4" />
-            <span>Filters</span>
-            {(selectedCategory !== 'all' || selectedTags.length > 0) && (
-              <span className="ml-1 px-2 py-1 text-xs bg-divi-primary text-white rounded-full">
-                {selectedCategory !== 'all' ? 1 : 0 + selectedTags.length}
-              </span>
-            )}
-          </button>
-          
-          <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+          <div className="flex items-center space-x-2">
             <button
-              onClick={() => setViewMode('grid')}
-              className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white dark:bg-gray-600 shadow-sm' : ''}`}
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex-1 sm:flex-none justify-center"
             >
-              <SafeIcon icon={FiGrid} className="w-4 h-4" />
+              <SafeIcon icon={FiFilter} className="w-4 h-4" />
+              <span className="text-sm">Filters</span>
+              {(selectedCategory !== 'all' || selectedTags.length > 0) && (
+                <span className="ml-1 px-2 py-1 text-xs bg-divi-primary text-white rounded-full">
+                  {selectedCategory !== 'all' ? 1 : 0 + selectedTags.length}
+                </span>
+              )}
             </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`p-2 rounded ${viewMode === 'list' ? 'bg-white dark:bg-gray-600 shadow-sm' : ''}`}
-            >
-              <SafeIcon icon={FiList} className="w-4 h-4" />
-            </button>
+            
+            <div className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white dark:bg-gray-600 shadow-sm' : ''}`}
+              >
+                <SafeIcon icon={FiGrid} className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded ${viewMode === 'list' ? 'bg-white dark:bg-gray-600 shadow-sm' : ''}`}
+              >
+                <SafeIcon icon={FiList} className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>
@@ -162,7 +163,7 @@ const AssetLibrary = () => {
             placeholder="Search assets by name, category, tags, or content..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-divi-primary focus:border-transparent outline-none"
+            className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-divi-primary focus:border-transparent outline-none text-sm sm:text-base"
           />
         </div>
       </motion.div>
@@ -173,7 +174,7 @@ const AssetLibrary = () => {
           <div className="flex flex-wrap gap-2 mb-4">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-3 py-1 text-sm rounded-full transition-colors ${
+              className={`px-3 py-1 text-xs sm:text-sm rounded-full transition-colors ${
                 selectedCategory === 'all'
                   ? 'bg-divi-primary text-white'
                   : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -187,7 +188,7 @@ const AssetLibrary = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                  className={`px-3 py-1 text-xs sm:text-sm rounded-full transition-colors ${
                     selectedCategory === category
                       ? 'bg-divi-primary text-white'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -210,7 +211,7 @@ const AssetLibrary = () => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Categories */}
                 <div>
@@ -251,7 +252,7 @@ const AssetLibrary = () => {
                       <button
                         key={tag}
                         onClick={() => handleTagToggle(tag)}
-                        className={`px-3 py-1 text-sm rounded-full transition-colors ${
+                        className={`px-3 py-1 text-xs sm:text-sm rounded-full transition-colors ${
                           selectedTags.includes(tag)
                             ? 'bg-divi-primary text-white'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -264,7 +265,7 @@ const AssetLibrary = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex justify-between items-center">
+              <div className="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   {filteredAssets.length} assets match your filters
                 </span>
@@ -284,7 +285,7 @@ const AssetLibrary = () => {
       <motion.div variants={itemVariants}>
         {filteredAssets.length > 0 ? (
           viewMode === 'grid' ? (
-            <div className="asset-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {filteredAssets.map((asset) => (
                 <AssetCard key={asset.id} asset={asset} onQuickCopy={handleQuickCopy} />
               ))}
@@ -302,7 +303,7 @@ const AssetLibrary = () => {
           <div className="text-center py-12">
             <SafeIcon icon={FiSearch} className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">No assets found</h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
               Try adjusting your search terms or filters
             </p>
           </div>
@@ -334,10 +335,10 @@ const AssetCard = ({ asset, onQuickCopy }) => {
       </div>
       
       <div className="p-4">
-        <h3 className="font-medium text-gray-900 dark:text-white truncate mb-1">
+        <h3 className="font-medium text-gray-900 dark:text-white truncate mb-1 text-sm sm:text-base">
           {asset.name}
         </h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 capitalize">
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2 capitalize">
           {asset.category.replace(/-/g, ' ')}
         </p>
         
@@ -361,7 +362,7 @@ const AssetCard = ({ asset, onQuickCopy }) => {
           <span className="text-xs text-gray-500 dark:text-gray-400">
             {new Date(asset.uploadDate).toLocaleDateString()}
           </span>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1">
             {asset.copyableContent && (
               <button
                 onClick={() => onQuickCopy(asset)}
@@ -407,15 +408,15 @@ const AssetListItem = ({ asset, onQuickCopy }) => {
         </div>
         
         <div className="flex-1 min-w-0">
-          <h3 className="font-medium text-gray-900 dark:text-white truncate">
+          <h3 className="font-medium text-gray-900 dark:text-white truncate text-sm sm:text-base">
             {asset.name}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 capitalize">
             {asset.category.replace(/-/g, ' ')} • {new Date(asset.uploadDate).toLocaleDateString()}
           </p>
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="hidden sm:flex items-center space-x-2">
           {asset.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
@@ -431,7 +432,7 @@ const AssetListItem = ({ asset, onQuickCopy }) => {
           )}
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1">
           {asset.copyableContent && (
             <button
               onClick={() => onQuickCopy(asset)}
